@@ -14,12 +14,13 @@
 		"babel-preset-react": "^6.24.1",
 		"node-sass": "^4.9.2",
 		"parcel-bundler": "^1.9.7",
-		"sass-loader": "^7.1.0"
+		"redux": "^4.0.0"
 	},
 	"dependencies": {
 		"bulma": "^0.7.1",
 		"bulma-start": "^0.0.2",
 		"react": "^16.4.2",
-		"react-dom": "^16.4.2"
+		"react-dom": "^16.4.2",
+		"yarn": "^1.9.4"
 	}
 }
