@@ -7,20 +7,32 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "parcel ./src/App.js",
-		"build": "parcel build ./src/App.js"
+		"build": "parcel build ./src/App.js",
+		"test": "jest --coverage",
+		"test:watch": "jest --watch"
+	},
+	"jest": {
+		"setupTestFrameworkScriptFile": "/tests/setup/setupEnzyme.js",
+		"testPathIgnorePatterns": [
+			"/tests/setup/"
+		]
 	},
 	"devDependencies": {
 		"babel-cli": "^6.26.0",
 		"babel-preset-react": "^6.24.1",
-		"node-sass": "^4.9.2",
+		"enzyme": "^3.3.0",
+		"enzyme-adapter-react-16": "^1.1.1",
+		"enzyme-to-json": "^3.3.4",
+		"jest": "^23.4.2",
 		"parcel-bundler": "^1.9.7",
-		"redux": "^4.0.0"
+		"redux-mock-store": "^1.5.3"
 	},
 	"dependencies": {
 		"bulma": "^0.7.1",
 		"bulma-start": "^0.0.2",
 		"react": "^16.4.2",
 		"react-dom": "^16.4.2",
+		"redux": "^4.0.0",
 		"yarn": "^1.9.4"
 	}
 }
