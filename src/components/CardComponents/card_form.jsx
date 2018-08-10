@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../../../node_modules/bulma/bulma.sass';
 
+import axios from 'axios';
+
 class CardForm extends Component {
 	constructor(props) {
 		super(props);
@@ -9,11 +11,20 @@ class CardForm extends Component {
 
 	handleChange(event) {
 		this.setState({ value: event.target.value });
+		console.log(this.state);
 	}
 
 	handleSubmit(event) {
 		console.log(`A word or phrase was submitted!: ${this.state.value}`);
 		event.preventDefault();
+
+		const card = {
+			english: this.state.value
+		};
+		axios.post('http://localhost:1337/cards', { card }).then((res) => {
+			console.log(res);
+			console.log(res.data);
+		});
 	}
 
 	render() {
