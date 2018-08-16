@@ -23,6 +23,7 @@
 		"bulma-start": "^0.0.2",
 		"enzyme": "^3.4.0",
 		"react": "^16.4.2",
+		"react-card-flip": "^0.2.1",
 		"react-dom": "^16.4.2",
 		"yarn": "^1.9.4"
 	}
