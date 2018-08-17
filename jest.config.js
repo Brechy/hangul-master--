@@ -1,0 +1,5 @@
+{
+	{
+		('./src/setupTests.js');
+	}
+}
