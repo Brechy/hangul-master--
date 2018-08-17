@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.js';
+import App from './App.jsx';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+require('./components/Login/login.sass');
+require('./components/LandingPage/landingpage.sass');
+require('./components/CardComponents/card.sass');
+
+ReactDOM.render(<App />, document.getElementById('App'));
