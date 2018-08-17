@@ -25,6 +25,7 @@
 		"@fortawesome/free-solid-svg-icons": "^5.1.0-11",
 		"@fortawesome/react-fontawesome": "^0.1.0-11",
 		"axios": "^0.18.0",
+		"babel-plugin-transform-class-properties": "^6.24.1",
 		"bulma": "^0.7.1",
 		"bulma-start": "^0.0.2",
 		"enzyme": "^3.4.0",
@@ -33,6 +34,7 @@
 		"react-dom": "^16.4.2",
 		"react-router": "^4.3.1",
 		"react-router-dom": "^4.3.1",
+		"semantic-ui-react": "^0.82.2",
 		"yarn": "^1.9.4"
 	}
 }
