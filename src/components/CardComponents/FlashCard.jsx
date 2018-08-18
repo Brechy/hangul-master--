@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import ReactCardFlip from 'react-card-flip';
+import './card.sass';
 
 class FlashCard extends Component {
 	constructor() {
@@ -11,39 +11,26 @@ class FlashCard extends Component {
 		};
 		this.handleClick = this.handleClick.bind(this);
 	}
-
 	handleClick(event) {
 		event.preventDefault();
 		this.setState((prevState) => ({ isFlipped: !prevState.isFlipped }));
 	}
-
 	render() {
 		return (
 			<ReactCardFlip isFlipped={this.state.isFlipped}>
-				<div key="front" style={this.props.styles.card}>
-					<img
-						style={this.props.styles.image}
-						src="//static.pexels.com/photos/59523/pexels-photo-59523.jpeg"
-					/>
-
-					<button onClick={this.handleClick}>Flip Card</button>
+				<div className="front" key="front" style={this.props.styles.card}>
+					<h6>HANGUL WORD</h6>
+					<button className="button" onClick={this.handleClick}>Flip Card</button>
 				</div>
-
-				<div key="back" style={this.props.styles.card}>
-					<img
-						style={this.props.styles.image}
-						src="//img.buzzfeed.com/buzzfeed-static/static/2014-04/enhanced/webdr06/4/16/enhanced-11136-1396643149-13.jpg?no-auto"
-					/>
-
-					<button onClick={this.handleClick}>Flip Card</button>
+				<div className="back" key="back" style={this.props.styles.card}>
+					<h6>ENGLISH WORD</h6>
+					<button className="button" onClick={this.handleClick}>Flip Card</button>
 				</div>
 			</ReactCardFlip>
 		);
 	}
 }
-
 FlashCard.propTypes = {
 	styles: PropTypes.object
 };
-
 export default FlashCard;
