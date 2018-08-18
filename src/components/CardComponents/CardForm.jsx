@@ -38,14 +38,14 @@ class CardForm extends Component {
 					<input
 						value={this.state.value}
 						onChange={(event) => this.handleChange(event)}
-						className="input is-primary"
+						className="input is-warning is-large"
 						type="text"
 						data-parser="uppercase"
-						placeholder="Enter English word or phrase here"
+						placeholder="English word or phrase"
 					/>
 					<br />
 					<br />
-					<button type="submit" value="Submit" className="button is-primary">
+					<button type="submit" value="Submit" className="button is-warning">
 						Translate
 					</button>
 				</div>
