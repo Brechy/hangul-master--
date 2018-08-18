@@ -21,7 +21,7 @@ class CardForm extends Component {
 		const card = {
 			english: this.state.value
 		};
-		axios.post('http://localhost:1337/cards', { card }).then((res) => {
+		axios.get(`http://localhost:1337/cards/translate/${this.state.value}`, { card }).then((res) => {
 			console.log(res);
 			console.log(res.data);
 		});
