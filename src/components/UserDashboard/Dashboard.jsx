@@ -13,13 +13,14 @@ const Dashboard = () => {
 						<div className="tile is-parent is-vertical">
 							<article className="tile is-child notification is-primary">
 								<p className="title">Create Flashcard</p>
-								<p className="subtitle">Translate and Create Here!</p>
+								<p className="subtitle">Translate and Create here</p>
 								<CardForm />
 							</article>
 						</div>
 						<div className="tile is-parent">
 							<article className="tile is-child notification is-info">
-								<p className="title">Middle tile</p>
+								<p className="title">Pronunciation</p>
+								<p className="subtitle">Check out these videos from Talk To Me In Korean to learn how to pronounce common Korean words and phrases</p>
 								<iframe
 									width="375"
 									height="300"
