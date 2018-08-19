@@ -43,10 +43,10 @@ const Dashboard = () => {
 				<div className="tile is-parent">
 					<article className="tile is-child notification is-success">
 						<div className="content">
-							<p className="title">Cards and Decks</p>
-							<p className="subtitle">Access your Cards and Decks here!</p>
+							<p className="title">Saved Cards</p>
+							<p className="subtitle">Access your saved Cards here</p>
 							<div className="content">
-								<FlashCard styles={styles} />
+								<FlashCard english={"English Word"} hangul={"Hangul Word"}/>
 							</div>
 						</div>
 					</article>
