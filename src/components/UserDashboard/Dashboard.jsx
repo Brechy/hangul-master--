@@ -4,18 +4,7 @@ import FlashCard from '../CardComponents/FlashCard.jsx';
 import '../../../node_modules/bulma/bulma.sass';
 
 const Dashboard = () => {
-	const styles = {
-		card: {
-			border: '1px solid black',
-			borderRadius: '3px',
-			padding: '15px',
-			width: '250px'
-		},
-		image: {
-			height: '200px',
-			width: '250px'
-		}
-	};
+
 	return (
 		<div id="wrapper">
 			<div className="tile is-ancestor">
