@@ -18,12 +18,12 @@ class FlashCard extends Component {
 	render() {
 		return (
 			<ReactCardFlip isFlipped={this.state.isFlipped}>
-				<div className="front" key="front" style={this.props.styles.card}>
-					<h6>HANGUL WORD</h6>
+				<div className="front card" key="front">
+					<h6>{this.props.english}</h6>
 					<button className="button" onClick={this.handleClick}>Flip Card</button>
 				</div>
-				<div className="back" key="back" style={this.props.styles.card}>
-					<h6>ENGLISH WORD</h6>
+				<div className="back card" key="back">
+					<h6>{this.props.hangul}</h6>
 					<button className="button" onClick={this.handleClick}>Flip Card</button>
 				</div>
 			</ReactCardFlip>
