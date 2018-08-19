@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Button } from 'semantic-ui-react';
+import FlashCard from './FlashCard.jsx';
 import '../../../node_modules/bulma/bulma.sass';
 
 import axios from 'axios';
