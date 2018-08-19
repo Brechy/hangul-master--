@@ -36,35 +36,62 @@ class CardForm extends Component {
 		const card = {
 			english: this.state.value
 		};
-		axios.get(`http://localhost:1337/cards/translate/${this.state.value}`, { card }).then((res) => {
-			console.log(res);
-			console.log(res.data);
-		});
+		this.setState({ isTranslating: true, hangul:""});
+		axios.get(`http://localhost:1337/cards/translate/${this.state.value}`, {
+				card
+			})
+			.then((res) => {
+				this.setState({ isTranslating: false, english:res.data.english, hangul:res.data.hangul });
+				console.log(res);
+				console.log(res.data);
+			});
 	}
 
 	render() {
-		return (
-			<form
-				className="field"
-				onSubmit={(event) => {
-					this.handleSubmit(event);
-				}}>
-				<div className="control">
-					<input
-						value={this.state.value}
-						onChange={(event) => this.handleChange(event)}
-						className="input is-warning is-large"
-						type="text"
-						data-parser="uppercase"
-						placeholder="English word or phrase"
-					/>
+		let flashCard = <div />;
+		if (this.state.hangul !== '') {
+			flashCard = (
+				<div>
+					<div>
+						<br />
+						<FlashCard english={this.state.english} hangul={this.state.hangul}/>
+					</div>
 					<br />
-					<br />
-					<button type="submit" value="Submit" className="button is-warning">
-						Translate
-					</button>
+					<div className="savebutton">
+						<Button onClick={(event) => this.handleSave(event)} loading={this.state.isSaving} className="save">Save</Button>
+					</div>
 				</div>
-			</form>
+			);
+		}
+		return (
+			<div>
+				<form
+					className="field"
+					onSubmit={(event) => {
+						this.handleSubmit(event);
+					}}>
+					<div className="control">
+						<input
+							value={this.state.value}
+							onChange={(event) => this.handleChange(event)}
+							className="input is-warning is-large"
+							type="text"
+							data-parser="uppercase"
+							placeholder="English word or phrase"
+						/>
+						<br />
+						<br />
+						<Button
+							loading={this.state.isTranslating}
+							type="submit"
+							value="Submit"
+						className="button is-warning">
+							Translate
+						</Button>
+					</div>
+				</form>
+				{flashCard}
+			</div>
 		);
 	}
 }
