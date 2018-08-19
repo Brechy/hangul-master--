@@ -4,7 +4,18 @@ import FlashCard from '../CardComponents/FlashCard.jsx';
 import '../../../node_modules/bulma/bulma.sass';
 
 const Dashboard = () => {
-
+	const styles = {
+		card: {
+			border: '1px solid black',
+			borderRadius: '3px',
+			padding: '15px',
+			width: '250px'
+		},
+		image: {
+			height: '200px',
+			width: '250px'
+		}
+	};
 	return (
 		<div id="wrapper">
 			<div className="tile is-ancestor">
@@ -13,14 +24,13 @@ const Dashboard = () => {
 						<div className="tile is-parent is-vertical">
 							<article className="tile is-child notification is-primary">
 								<p className="title">Create Flashcard</p>
-								<p className="subtitle">Translate and Create here</p>
+								<p className="subtitle">Translate and Create Here!</p>
 								<CardForm />
 							</article>
 						</div>
 						<div className="tile is-parent">
 							<article className="tile is-child notification is-info">
-								<p className="title">Pronunciation</p>
-								<p className="subtitle">Check out these videos from Talk To Me In Korean to learn how to pronounce common Korean words and phrases</p>
+								<p className="title">Middle tile</p>
 								<iframe
 									width="375"
 									height="300"
@@ -34,8 +44,8 @@ const Dashboard = () => {
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child notification is-danger">
-							<p className="title">Friends</p>
-							<p className="subtitle">Learn Korean together with friends! Make and share cards!</p>
+							<p className="title">Wide tile</p>
+							<p className="subtitle">Aligned with the right tile</p>
 							<div className="content" />
 						</article>
 					</div>
@@ -43,10 +53,10 @@ const Dashboard = () => {
 				<div className="tile is-parent">
 					<article className="tile is-child notification is-success">
 						<div className="content">
-							<p className="title">Saved Cards</p>
-							<p className="subtitle">Access your saved Cards here</p>
+							<p className="title">Cards and Decks</p>
+							<p className="subtitle">Access your Cards and Decks here!</p>
 							<div className="content">
-								<FlashCard english={"English Word"} hangul={"Hangul Word"}/>
+								<FlashCard styles={styles} />
 							</div>
 						</div>
 					</article>
