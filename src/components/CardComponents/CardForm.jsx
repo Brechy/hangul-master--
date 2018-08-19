@@ -8,7 +8,20 @@ import axios from 'axios';
 class CardForm extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { value: '' };
+		this.state = { value: '', hangul:'', english:'' };
+	}
+
+	handleSave(event) {
+		console.log('A Card was saved!');
+		this.setState({ isSaving: true })
+		axios.post('http://localhost:1337/cards', {
+			english: this.state.english,
+			hangul: this.state.hangul,
+			score: 1
+		})
+		.then(() => {
+			this.setState({ isSaving: false, hangul:"", value:""})
+		})
 	}
 
 	handleChange(event) {
