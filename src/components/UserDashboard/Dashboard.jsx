@@ -28,14 +28,14 @@ const Dashboard = () => {
 									frameBorder="0"
 									allow="autoplay; encrypted-media"
 									allowFullScreen
-        />
+								/>
 							</article>
 						</div>
 					</div>
 					<div className="tile is-parent">
 						<article className="tile is-child notification is-danger">
-							<p className="title">Wide tile</p>
-							<p className="subtitle">Aligned with the right tile</p>
+							<p className="title">Friends</p>
+							<p className="subtitle">Learn Korean together with friends! Make and share cards!</p>
 							<div className="content" />
 						</article>
 					</div>
