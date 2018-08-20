@@ -10,9 +10,9 @@ const Routes = () => (
 		<Route exact path="/" component={LandingPage} />
 		<Route path="/Login" component={LoginPage} />
 		<Route path="/Signup" component={SignupPage} />
-			<Route path="/Dashboard" component={DashboardPage} />
-			<Route path="*" render={() => <Redirect to="/" />} />
-			</Switch>
+		<Route path="/Dashboard" component={DashboardPage} />
+		<Route path="*" render={() => <Redirect to="/" />} />
+	</Switch>
 );
 
 export default Routes;
