@@ -77,11 +77,12 @@ class CardForm extends Component {
 							className="input is-warning is-large"
 							type="text"
 							data-parser="uppercase"
-							placeholder="English word or phrase"
+							placeholder="Input english here"
 						/>
 						<br />
 						<br />
 						<Button
+							id="translate"
 							loading={this.state.isTranslating}
 							type="submit"
 							value="Submit"

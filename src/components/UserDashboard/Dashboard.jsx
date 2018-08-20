@@ -41,7 +41,8 @@ class Dashboard extends Component {
 							</div>
 							<div className="tile is-parent">
 								<article className="tile is-child notification is-info">
-									<p className="title">Middle tile</p>
+									<p className="title">Pronunciation</p>
+									<p className="subtitle">Check out these YouTube videos from Talk To Me In Korean, to pronounce Korean words and phrases like a pro!</p>
 									<iframe
 										width="375"
 										height="300"
@@ -55,8 +56,8 @@ class Dashboard extends Component {
 						</div>
 						<div className="tile is-parent">
 							<article className="tile is-child notification is-danger">
-								<p className="title">Wide tile</p>
-								<p className="subtitle">Aligned with the right tile</p>
+								<p className="title">Friends</p>
+								<p className="subtitle">Share your language learning journey with friends.</p>
 								<div className="content" />
 							</article>
 						</div>
@@ -64,8 +65,8 @@ class Dashboard extends Component {
 					<div className="tile is-parent">
 						<article className="tile is-child notification is-success">
 							<div className="content">
-								<p className="title">Cards and Decks</p>
-								<p className="subtitle">Access your Cards and Decks here!</p>
+								<p className="title">Cards</p>
+								<p className="subtitle">Access your Cards here!</p>
 								<div className="content">
 									<FlashCard styles={styles} />
 								</div>
