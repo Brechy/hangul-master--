@@ -7,10 +7,9 @@ const onFailure = (response) => {
 }
 
 const onSuccess = (response) => {
-	console.log(JSON.stringify(response))
-		console.log(response)
-
+//
 	localStorage.setItem('jwt token', response.tokenId)
+	window.location = '/Dashboard';
 }
 
 const LoginForm = () => {
