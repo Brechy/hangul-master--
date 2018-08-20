@@ -28,10 +28,10 @@ class Dashboard extends Component {
 		const redirect = (<div>Redirecting</div>);
 		const authSpinner = (<div>Authenticating</div>);
 		const authBody = (
-			<div id="wrapper">
+			<div className="wrapper">
 				<div className="tile is-ancestor">
 					<div className="tile is-vertical is-8">
-						<div className="tile">
+						<div className="tile greenblue">
 							<div className="tile is-parent is-vertical">
 								<article className="tile is-child notification is-primary">
 									<p className="title">Create Flashcard</p>
