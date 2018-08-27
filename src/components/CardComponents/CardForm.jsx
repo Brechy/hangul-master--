@@ -14,7 +14,7 @@ class CardForm extends Component {
 	handleSave(event) {
 		console.log('A Card was saved!');
 		this.setState({ isSaving: true })
-		axios.post('http://localhost:1337/cards', {
+		axios.post('/api/cards', {
 			english: this.state.english,
 			hangul: this.state.hangul,
 			score: 1
@@ -37,7 +37,7 @@ class CardForm extends Component {
 			english: this.state.value
 		};
 		this.setState({ isTranslating: true, hangul:""});
-		axios.get(`http://localhost:1337/cards/translate/${this.state.value}`, {
+		axios.get(`/api/cards/translate/${this.state.value}`, {
 				card
 			})
 			.then((res) => {
