@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router';
 import CardForm from '../CardComponents/CardForm.jsx';
 import FlashCard from '../CardComponents/FlashCard.jsx';
 import '../../../node_modules/bulma/bulma.sass';
@@ -25,7 +26,7 @@ class Dashboard extends Component {
 				width: '250px'
 			}
 		};
-		const redirect = (<div>Redirecting</div>);
+		const redirect = (<div>Redirecting<Redirect to="/Login" /></div>);
 		const authSpinner = (<div>Authenticating</div>);
 		const authBody = (
 			<div className="wrapper">
@@ -80,7 +81,6 @@ class Dashboard extends Component {
 					return authSpinner
 				}
 				if(this.state.auth === false) {
-					window.location = '/login'
 					return redirect;
 				}
 				return authBody;
