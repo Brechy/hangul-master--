@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'semantic-ui-react';
 import {Redirect} from 'react-router';
 import CardForm from '../CardComponents/CardForm.jsx';
 import FlashCard from '../CardComponents/FlashCard.jsx';
@@ -7,6 +8,20 @@ import isAuthenticated from '../../lib/auth.js';
 
 class Dashboard extends Component {
 	state = {auth: undefined}
+
+	changeCard() {
+		this.setState({ cardChanging: true });
+
+		function random_item(items) {
+			return items[Math.floor(Math.random()*items.length)];
+     }
+
+		axios.get('/api/cards')
+			.then((res) => {
+				let card = random_item(res.data)
+				this.setState({ cardChanging: false, cardEnglish:card.english, cardHangul:card.hangul });
+			});
+	}
 	render() {
 		if (this.state.auth === undefined) { isAuthenticated()
 		.then((yes) => {
@@ -69,7 +84,10 @@ class Dashboard extends Component {
 								<p className="title">Cards</p>
 								<p className="subtitle">Access your Cards here!</p>
 								<div className="content">
-									<FlashCard styles={styles} />
+									<FlashCard styles={styles} hangul={this.state.cardHangul} english={this.state.cardEnglish} />
+								</div>
+								<div>
+									<Button onClick={(event) => this.changeCard()} loading={this.state.cardChanging} className="nextcard">Next</Button>
 								</div>
 							</div>
 						</article>
