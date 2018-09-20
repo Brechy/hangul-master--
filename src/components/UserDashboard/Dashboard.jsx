@@ -4,6 +4,7 @@ import {Redirect} from 'react-router';
 import CardForm from '../CardComponents/CardForm.jsx';
 import FlashCard from '../CardComponents/FlashCard.jsx';
 import '../../../node_modules/bulma/bulma.sass';
+import './dashboard.sass'
 import isAuthenticated from '../../lib/auth.js';
 
 import axios from 'axios';
@@ -112,9 +113,9 @@ class Dashboard extends Component {
 								<div className="content">
 									<FlashCard styles={styles} flipCard={this.flipCard} isFlipped={this.state.cardFlipped} hangul={this.state.cardHangul} english={this.state.cardEnglish} />
 								</div>
-								<div>
-									<Button onClick={(event) => this.changeCard()}  loading={this.state.cardChanging} className="nextcard">Next</Button>
-								</div>
+							</div>
+							<div className="nextbutton">
+								<Button onClick={(event) => this.changeCard()}  loading={this.state.cardChanging} className="nextcard is-warning">Next</Button>
 							</div>
 						</article>
 					</div>
