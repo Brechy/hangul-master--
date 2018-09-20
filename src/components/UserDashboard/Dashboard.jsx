@@ -9,10 +9,21 @@ import isAuthenticated from '../../lib/auth.js';
 import axios from 'axios';
 
 class Dashboard extends Component {
-	state = {auth: undefined, cardFlipped: false}
+	constructor() {
+		this.state = {
+			auth: undefined,
+			cardFlipped: false,
+			cardHangul: "",
+			cardEnglish: "",
+			cardChanging: false
+		}
+		this.flipCard = this.flipCard.bind(this);
+		this.changeCard = this.changeCard.bind(this);
+	}
+
 
   flipCard() {
-	  this.setState({cardFlipped: !this.state.cardFlipped})
+	  this.setState({ cardFlipped: !this.state.cardFlipped})
 	}
 
 	changeCard() {
@@ -33,7 +44,7 @@ class Dashboard extends Component {
 					}
 					card = random_item(res.data.data)
 				}
-				this.setState({ cardChanging: false, cardEnglish:card.english, cardHangul:card.hangul });
+				this.setState({ cardChanging: false, cardEnglish: card.english, cardHangul: card.hangul });
 			});
 	}
 	render() {
