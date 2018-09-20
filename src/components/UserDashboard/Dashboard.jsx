@@ -20,6 +20,7 @@ class Dashboard extends Component {
 
 		axios.get('/api/cards')
 			.then((res) => {
+				console.log(res)
 				let card = random_item(res.data)
 				this.setState({ cardChanging: false, cardEnglish:card.english, cardHangul:card.hangul });
 			});
