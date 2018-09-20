@@ -115,7 +115,7 @@ class Dashboard extends Component {
 								</div>
 							</div>
 							<div className="nextbutton">
-								<Button onClick={(event) => this.changeCard()}  loading={this.state.cardChanging} className="nextcard">Next</Button>
+								<Button onClick={(event) => this.changeCard()}  loading={this.state.cardChanging} id="nextcard">Next</Button>
 							</div>
 						</article>
 					</div>
