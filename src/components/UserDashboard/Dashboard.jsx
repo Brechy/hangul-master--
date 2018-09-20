@@ -6,6 +6,8 @@ import FlashCard from '../CardComponents/FlashCard.jsx';
 import '../../../node_modules/bulma/bulma.sass';
 import isAuthenticated from '../../lib/auth.js';
 
+import axios from 'axios';
+
 class Dashboard extends Component {
 	state = {auth: undefined}
 
