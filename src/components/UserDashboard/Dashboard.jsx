@@ -9,10 +9,14 @@ import isAuthenticated from '../../lib/auth.js';
 import axios from 'axios';
 
 class Dashboard extends Component {
-	state = {auth: undefined}
+	state = {auth: undefined, cardFlipped: false}
+
+  flipCard() {
+	  this.setState({cardFlipped: !this.state.cardFlipped})
+	}
 
 	changeCard() {
-		this.setState({ cardChanging: true });
+		this.setState({ cardChanging: true, cardFlipped: false });
 
 		function random_item(items) {
 			return items[Math.floor(Math.random()*items.length)];
@@ -21,7 +25,13 @@ class Dashboard extends Component {
 		axios.get('/api/cards')
 			.then((res) => {
 				console.log(res)
+				oldenglish = this.state.cardEnglish;
 				let card = random_item(res.data.data)
+				while (true) {
+					if (res.data.data.length < 2 || card.english != oldenglish) {
+						break
+					}
+				}
 				this.setState({ cardChanging: false, cardEnglish:card.english, cardHangul:card.hangul });
 			});
 	}
@@ -87,10 +97,10 @@ class Dashboard extends Component {
 								<p className="title">Cards</p>
 								<p className="subtitle">Access your Cards here!</p>
 								<div className="content">
-									<FlashCard styles={styles} hangul={this.state.cardHangul} english={this.state.cardEnglish} />
+									<FlashCard styles={styles} flipCard={this.flipCard} isFlipped={this.state.cardFlipped} hangul={this.state.cardHangul} english={this.state.cardEnglish} />
 								</div>
 								<div>
-									<Button onClick={(event) => this.changeCard()} loading={this.state.cardChanging} className="nextcard">Next</Button>
+									<Button onClick={(event) => this.changeCard()}  loading={this.state.cardChanging} className="nextcard">Next</Button>
 								</div>
 							</div>
 						</article>
