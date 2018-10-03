@@ -3,7 +3,7 @@ import '../../../node_modules/bulma/bulma.sass';
 import LoginForm from './LoginForm.jsx';
 
 const LoginPage = () => {
-	return <div className="LoginPage">Sign In with Google
+	return <div className="LoginPage">Log In Below
 		<LoginForm />
 	</div>;
 };
