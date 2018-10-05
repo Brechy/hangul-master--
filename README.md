@@ -17,3 +17,7 @@ A web app for users to enter in an English word or phrase, get a Korean Hangul t
 ## Acknowledgments
 
 - [React-card-flip](https://www.npmjs.com/package/react-card-flip) - Aaron Wong
+
+## Would you like to Contribute?
+
+- Please visit the [Contribute](https://github.com/Brechy/hangul-master/blob/master/CONTRIBUTING.md) file and get started making Hangul Master the most valuable Korean language learning tool in the interwebs!
