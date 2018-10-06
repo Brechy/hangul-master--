@@ -1,11 +1,54 @@
 import React, { Component } from 'react';
+import { Button } from 'semantic-ui-react';
+import {Redirect} from 'react-router';
 import CardForm from '../CardComponents/CardForm.jsx';
 import FlashCard from '../CardComponents/FlashCard.jsx';
 import '../../../node_modules/bulma/bulma.sass';
+import './dashboard.sass'
 import isAuthenticated from '../../lib/auth.js';
 
+import axios from 'axios';
+
 class Dashboard extends Component {
-	state = {auth: undefined}
+	constructor() {
+		super();
+		this.state = {
+			auth: undefined,
+			cardFlipped: false,
+			cardHangul: "",
+			cardEnglish: "",
+			cardChanging: false
+		}
+		this.flipCard = this.flipCard.bind(this);
+		this.changeCard = this.changeCard.bind(this);
+	}
+
+
+  flipCard() {
+	  this.setState({ cardFlipped: !this.state.cardFlipped})
+	}
+
+	changeCard() {
+		this.setState({ cardChanging: true, cardFlipped: false });
+
+		function random_item(items) {
+			return items[Math.floor(Math.random()*items.length)];
+     }
+
+		axios.get('/api/cards')
+			.then((res) => {
+				console.log(res)
+				let oldenglish = this.state.cardEnglish;
+				let card = random_item(res.data.data)
+				while (true) {
+					if (res.data.data.length < 2 || card.english != oldenglish) {
+						break
+					}
+					card = random_item(res.data.data)
+				}
+				this.setState({ cardChanging: false, cardEnglish: card.english, cardHangul: card.hangul });
+			});
+	}
 	render() {
 		if (this.state.auth === undefined) { isAuthenticated()
 		.then((yes) => {
@@ -25,13 +68,13 @@ class Dashboard extends Component {
 				width: '250px'
 			}
 		};
-		const redirect = (<div>Redirecting</div>);
+		const redirect = (<div>Redirecting<Redirect to="/Login" /></div>);
 		const authSpinner = (<div>Authenticating</div>);
 		const authBody = (
-			<div id="wrapper">
+			<div className="wrapper">
 				<div className="tile is-ancestor">
 					<div className="tile is-vertical is-8">
-						<div className="tile">
+						<div className="tile greenblue">
 							<div className="tile is-parent is-vertical">
 								<article className="tile is-child notification is-primary">
 									<p className="title">Create Flashcard</p>
@@ -41,7 +84,8 @@ class Dashboard extends Component {
 							</div>
 							<div className="tile is-parent">
 								<article className="tile is-child notification is-info">
-									<p className="title">Middle tile</p>
+									<p className="title">Pronunciation</p>
+									<p className="subtitle">Check out these YouTube videos from Talk To Me In Korean, to pronounce Korean words and phrases like a pro!</p>
 									<iframe
 										width="375"
 										height="300"
@@ -55,8 +99,8 @@ class Dashboard extends Component {
 						</div>
 						<div className="tile is-parent">
 							<article className="tile is-child notification is-danger">
-								<p className="title">Wide tile</p>
-								<p className="subtitle">Aligned with the right tile</p>
+								<p className="title">Friends</p>
+								<p className="subtitle">Share your language learning journey with friends.</p>
 								<div className="content" />
 							</article>
 						</div>
@@ -64,11 +108,14 @@ class Dashboard extends Component {
 					<div className="tile is-parent">
 						<article className="tile is-child notification is-success">
 							<div className="content">
-								<p className="title">Cards and Decks</p>
-								<p className="subtitle">Access your Cards and Decks here!</p>
+								<p className="title">Cards</p>
+								<p className="subtitle">Access your Cards here!</p>
 								<div className="content">
-									<FlashCard styles={styles} />
+									<FlashCard styles={styles} flipCard={this.flipCard} isFlipped={this.state.cardFlipped} hangul={this.state.cardHangul} english={this.state.cardEnglish} />
 								</div>
+							</div>
+							<div className="nextbutton">
+								<Button onClick={(event) => this.changeCard()}  loading={this.state.cardChanging} id="nextcard">Next</Button>
 							</div>
 						</article>
 					</div>
@@ -79,7 +126,6 @@ class Dashboard extends Component {
 					return authSpinner
 				}
 				if(this.state.auth === false) {
-					window.location = '/login'
 					return redirect;
 				}
 				return authBody;

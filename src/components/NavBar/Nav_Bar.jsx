@@ -11,8 +11,8 @@ class NavBar extends Component {
 		const { activeItem } = this.state;
 
 		return (
-			<div id="NavBar">
-				<Menu stackable>
+			<div className="navbar">
+				<Menu size="massive" stackable className="ui top fixed menu">
 					<Menu.Item>
 						<img src={require("./hm_logo.png")} />
 					</Menu.Item>
