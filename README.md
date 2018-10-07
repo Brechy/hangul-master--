@@ -1,4 +1,4 @@
-# Hangul Master 
+# Hangul Master || 한글 전문가
 
 안녕하세요! Welcome to Hangul Master!
 
