@@ -1,5 +1,7 @@
 # Hangul Master 
 
+안녕하세요! Welcome to Hangul Master!
+
 An educational tool/web app for users to enter in an English word or phrase, get an accurate Korean Hangul translation back, and turn the data into a flash card for later use. 
 
 ## Built With
