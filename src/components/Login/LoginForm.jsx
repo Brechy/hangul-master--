@@ -4,12 +4,13 @@ import {GoogleLogin} from 'react-google-login';
 import {Button, Checkbox, Form} from 'semantic-ui-react'
 import validator from 'validator';
 
+import axios from 'axios';
+
 const onFailure = (response) => {
   console.log(response);
 }
 
 const onSuccess = (response) => {
-  //
   localStorage.setItem('jwt token', response.tokenId)
   window.location = '/Dashboard';
 }
@@ -36,11 +37,16 @@ class LoginForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+		console.log("submitting login");
 		axios.post('http://localhost:1337/login', {
 			username: this.state.username,
 			password: this.state.password
 		})
-		swal('Logging you in!')
+		.then(res => {
+			// set the floopy token, it's not the google one.
+			localStorage.setItem('floopy token', res.data.data)
+			window.location = '/Dashboard'
+		})
   }
   render() {
     return (
@@ -67,10 +73,10 @@ class LoginForm extends Component {
 				</Form.Field>
 
 				<Button
-					id="submit"
+					onClick={this.handleSubmit}
 					color="teal"
 					fluid size="large"
-					type='submit'
+					type='button'
 					value="Submit"
 				>
 					Submit
