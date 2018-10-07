@@ -1,6 +1,6 @@
 # Hangul Master 
 
-A web app for users to enter in an English word or phrase, get a Korean Hangul translation back, and turn the data into a flash card for later use. 
+An educational tool/web app for users to enter in an English word or phrase, get an accurate Korean Hangul translation back, and turn the data into a flash card for later use. 
 
 ## Built With
 
