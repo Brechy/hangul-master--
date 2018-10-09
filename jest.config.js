@@ -1,5 +1,3 @@
-{
-	{
-		('./src/setupTests.js');
+	"jest": {
+		"setupTestFrameworkScriptFile": "<rootDir>src/setupTests.js"
 	}
-}
