@@ -26,7 +26,6 @@ const NavBar = () => {
               name='Signup'
 							href="/"
             />
-						SIGNUP
           </Menu.Menu>
 				</Menu>
 			</div>
