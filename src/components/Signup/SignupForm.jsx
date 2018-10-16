@@ -38,10 +38,25 @@ class SignupForm extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		if(this.state.passwordAValue === this.state.passwordBValue) {
-			swal("You are all set!", "You are now registerd, " + this.state.username + "!", "Success");
 			axios.post('/api/users', {
 				username: this.state.username,
 				password: this.state.passwordAValue
+			})
+			.then(res => {
+				swal("You are now registered, " + this.state.username + "!", "Success");
+				axios.post('/api/login', {
+					username: this.state.username,
+					password: this.state.passwordAValue
+				})
+				.then(res => {
+					// set the floopy token, it's not the google one.
+					localStorage.setItem('floopy token', res.data.data)
+					window.location = '/Dashboard'
+				})
+			})
+			//catch error
+			.catch(function(error) {
+				console.log(error)
 			})
 		} else {
 			swal("Passwords do not match")

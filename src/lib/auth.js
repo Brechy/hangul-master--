@@ -46,7 +46,7 @@ const isFloopyAuthenticated = async() => {
 			//check if token is legit by asking google to verify based on kid matching
 			let kidkey = localStorage.getItem(`floopy-cert`);
 			if (!kidkey) {
-				const kidkey = await fetch('http://localhost:1337/publickey');
+				const kidkey = await fetch('/publickey');
 				localStorage.setItem(`floopy-cert`, kidkey);
 			}
 			jwt.verify(token, kidkey);
