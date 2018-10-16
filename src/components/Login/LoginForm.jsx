@@ -38,7 +38,7 @@ class LoginForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
 		console.log("submitting login");
-		axios.post('http://localhost:1337/login', {
+		axios.post('/api/login', {
 			username: this.state.username,
 			password: this.state.password
 		})

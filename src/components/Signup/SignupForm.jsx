@@ -39,7 +39,7 @@ class SignupForm extends Component {
 		event.preventDefault();
 		if(this.state.passwordAValue === this.state.passwordBValue) {
 			swal("You are all set!", "You are now registerd, " + this.state.username + "!", "Success");
-			axios.post('http://localhost:1337/users', {
+			axios.post('/api/users', {
 				username: this.state.username,
 				password: this.state.passwordAValue
 			})
