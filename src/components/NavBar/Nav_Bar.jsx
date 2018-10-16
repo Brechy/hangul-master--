@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 
-class NavBar extends Component {
-	state = {};
-
-	handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
-	render() {
-		const { activeItem } = this.state;
+const NavBar = () => {
 
 		return (
 			<div className="navbar">
@@ -19,20 +13,24 @@ class NavBar extends Component {
 
 					<Menu.Item
 						name="features"
-						active={activeItem === 'features'}
-						onClick={this.handleItemClick}>
+					href="/Dashboard">
 						Home
 					</Menu.Item>
 					<Menu.Item
 						name="Login"
-						active={activeItem === 'Login'}
-						onClick={this.handleItemClick}>
+					href="/Login">
 						Login
 					</Menu.Item>
+					<Menu.Menu position='right'>
+            <Menu.Item
+              name='Signup'
+							href="/"
+            />
+						SIGNUP
+          </Menu.Menu>
 				</Menu>
 			</div>
 		);
 	}
-}
 
 export default NavBar;
