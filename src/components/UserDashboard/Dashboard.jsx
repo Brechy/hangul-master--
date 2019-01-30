@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
-import {Redirect} from 'react-router';
+import { Redirect } from 'react-router';
 import CardForm from '../CardComponents/CardForm.jsx';
 import FlashCard from '../CardComponents/FlashCard.jsx';
 import '../../../node_modules/bulma/bulma.sass';
-import './dashboard.sass'
+import './dashboard.sass';
 import isAuthenticated from '../../lib/auth.js';
 
 import axios from 'axios';
@@ -15,47 +15,50 @@ class Dashboard extends Component {
 		this.state = {
 			auth: undefined,
 			cardFlipped: false,
-			cardHangul: "",
-			cardEnglish: "",
+			cardHangul: '',
+			cardEnglish: '',
 			cardChanging: false
-		}
+		};
 		this.flipCard = this.flipCard.bind(this);
 		this.changeCard = this.changeCard.bind(this);
 	}
 
-
-  flipCard() {
-	  this.setState({ cardFlipped: !this.state.cardFlipped})
+	flipCard() {
+		this.setState({ cardFlipped: !this.state.cardFlipped });
 	}
 
 	changeCard() {
 		this.setState({ cardChanging: true, cardFlipped: false });
 
 		function random_item(items) {
-			return items[Math.floor(Math.random()*items.length)];
-     }
+			return items[Math.floor(Math.random() * items.length)];
+		}
 
-		axios.get('/api/cards')
-			.then((res) => {
-				console.log(res)
-				let oldenglish = this.state.cardEnglish;
-				let card = random_item(res.data.data)
-				while (true) {
-					if (res.data.data.length < 2 || card.english != oldenglish) {
-						break
-					}
-					card = random_item(res.data.data)
+		axios.get('/api/cards').then(res => {
+			console.log(res);
+			let oldenglish = this.state.cardEnglish;
+			let card = random_item(res.data.data);
+			while (true) {
+				if (res.data.data.length < 2 || card.english != oldenglish) {
+					break;
 				}
-				this.setState({ cardChanging: false, cardEnglish: card.english, cardHangul: card.hangul });
+				card = random_item(res.data.data);
+			}
+			this.setState({
+				cardChanging: false,
+				cardEnglish: card.english,
+				cardHangul: card.hangul
 			});
+		});
 	}
 	render() {
-		if (this.state.auth === undefined) { isAuthenticated()
-		.then((yes) => {
-			this.setState({
-				auth: yes
-			})
-		})}
+		if (this.state.auth === undefined) {
+			isAuthenticated().then(yes => {
+				this.setState({
+					auth: yes
+				});
+			});
+		}
 		const styles = {
 			card: {
 				border: '1px solid black',
@@ -68,8 +71,13 @@ class Dashboard extends Component {
 				width: '250px'
 			}
 		};
-		const redirect = (<div>Redirecting<Redirect to="/Login" /></div>);
-		const authSpinner = (<div>Authenticating</div>);
+		const redirect = (
+			<div>
+				Redirecting
+				<Redirect to="/Login" />
+			</div>
+		);
+		const authSpinner = <div>Authenticating</div>;
 		const authBody = (
 			<div className="wrapper">
 				<div className="tile is-ancestor">
@@ -85,7 +93,10 @@ class Dashboard extends Component {
 							<div className="tile is-parent">
 								<article className="tile is-child notification is-info">
 									<p className="title">Pronunciation</p>
-									<p className="subtitle">Check out these YouTube videos from Talk To Me In Korean, to pronounce Korean words and phrases like a pro!</p>
+									<p className="subtitle">
+										Check out these YouTube videos from Talk To Me In Korean, to
+										pronounce Korean words and phrases like a pro!
+									</p>
 									<iframe
 										width="375"
 										height="300"
@@ -100,7 +111,9 @@ class Dashboard extends Component {
 						<div className="tile is-parent">
 							<article className="tile is-child notification is-danger">
 								<p className="title">Friends</p>
-								<p className="subtitle">Share your language learning journey with friends.</p>
+								<p className="subtitle">
+									Share your language learning journey with friends.
+								</p>
 								<div className="content" />
 							</article>
 						</div>
@@ -111,24 +124,36 @@ class Dashboard extends Component {
 								<p className="title">Cards</p>
 								<p className="subtitle">Access your Cards here!</p>
 								<div className="content">
-									<FlashCard styles={styles} flipCard={this.flipCard} isFlipped={this.state.cardFlipped} hangul={this.state.cardHangul} english={this.state.cardEnglish} />
+									<FlashCard
+										styles={styles}
+										flipCard={this.flipCard}
+										isFlipped={this.state.cardFlipped}
+										hangul={this.state.cardHangul}
+										english={this.state.cardEnglish}
+									/>
 								</div>
 							</div>
 							<div className="nextbutton">
-								<Button onClick={(event) => this.changeCard()}  loading={this.state.cardChanging} id="nextcard">Next</Button>
+								<Button
+									onClick={event => this.changeCard()}
+									loading={this.state.cardChanging}
+									id="nextcard"
+								>
+									Next
+								</Button>
 							</div>
 						</article>
 					</div>
 				</div>
 			</div>
 		);
-				if(this.state.auth === undefined) {
-					return authSpinner
-				}
-				if(this.state.auth === false) {
-					return redirect;
-				}
-				return authBody;
+		if (this.state.auth === undefined) {
+			return authSpinner;
+		}
+		if (this.state.auth === false) {
+			return redirect;
+		}
+		return authBody;
 	}
 }
 

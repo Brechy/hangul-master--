@@ -16,19 +16,27 @@ class FlashCard extends Component {
 		if (this.props.flipCard) {
 			this.props.flipCard();
 		} else {
-			this.setState((prevState) => ({ isFlipped: !prevState.isFlipped }));
+			this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
 		}
 	}
 	render() {
 		return (
-			<ReactCardFlip isFlipped={this.props.flipCard?this.props.isFlipped:this.state.isFlipped}>
+			<ReactCardFlip
+				isFlipped={
+					this.props.flipCard ? this.props.isFlipped : this.state.isFlipped
+				}
+			>
 				<div className="front card" key="front">
 					<h6>{this.props.english}</h6>
-					<button className="button" onClick={this.handleClick}>Flip Card</button>
+					<button className="button" onClick={this.handleClick}>
+						Flip Card
+					</button>
 				</div>
 				<div className="back card" key="back">
 					<h6>{this.props.hangul}</h6>
-					<button className="button" onClick={this.handleClick}>Flip Card</button>
+					<button className="button" onClick={this.handleClick}>
+						Flip Card
+					</button>
 				</div>
 			</ReactCardFlip>
 		);
