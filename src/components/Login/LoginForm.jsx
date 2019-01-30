@@ -1,55 +1,56 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {GoogleLogin} from 'react-google-login';
-import {Button, Checkbox, Form} from 'semantic-ui-react'
+import { GoogleLogin } from 'react-google-login';
+import { Button, Checkbox, Form } from 'semantic-ui-react';
 import validator from 'validator';
 
 import axios from 'axios';
 
-const onFailure = (response) => {
-  console.log(response);
-}
+const onFailure = response => {
+	console.log(response);
+};
 
-const onSuccess = (response) => {
-  localStorage.setItem('jwt token', response.tokenId)
-  window.location = '/Dashboard';
-}
+const onSuccess = response => {
+	localStorage.setItem('jwt token', response.tokenId);
+	window.location = '/Dashboard';
+};
 
 class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: ''
-    }
-    this.handleLoginUsername = this.handleLoginUsername.bind(this);
-    this.handleLoginPassword = this.handleLoginPassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			username: '',
+			password: ''
+		};
+		this.handleLoginUsername = this.handleLoginUsername.bind(this);
+		this.handleLoginPassword = this.handleLoginPassword.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
 
-  handleLoginUsername(event) {
-    this.setState({username: event.target.value});
-  }
+	handleLoginUsername(event) {
+		this.setState({ username: event.target.value });
+	}
 
-  handleLoginPassword(event) {
-    this.setState({password: event.target.value});
-  }
+	handleLoginPassword(event) {
+		this.setState({ password: event.target.value });
+	}
 
-  handleSubmit(event) {
-    event.preventDefault();
-		console.log("submitting login");
-		axios.post('/api/login', {
-			username: this.state.username,
-			password: this.state.password
-		})
-		.then(res => {
-			// set the floopy token, it's not the google one.
-			localStorage.setItem('floopy token', res.data.data)
-			window.location = '/Dashboard'
-		})
-  }
-  render() {
-    return (
+	handleSubmit(event) {
+		event.preventDefault();
+		console.log('submitting login');
+		axios
+			.post('/api/login', {
+				username: this.state.username,
+				password: this.state.password
+			})
+			.then(res => {
+				// set the floopy token, it's not the google one.
+				localStorage.setItem('floopy token', res.data.data);
+				window.location = '/Dashboard';
+			});
+	}
+	render() {
+		return (
 			<Form id="loginform">
 				<Form.Field
 					value={this.state.username}
@@ -57,8 +58,7 @@ class LoginForm extends Component {
 					className="formitem"
 				>
 					<label>Username</label>
-					<input
-					placeholder='Username'/>
+					<input placeholder="Username" />
 				</Form.Field>
 
 				<Form.Field
@@ -67,16 +67,15 @@ class LoginForm extends Component {
 					className="formitem"
 				>
 					<label>Password</label>
-					<input
-						type="password"
-					placeholder='Password'/>
+					<input type="password" placeholder="Password" />
 				</Form.Field>
 
 				<Button
 					onClick={this.handleSubmit}
 					color="teal"
-					fluid size="large"
-					type='button'
+					fluid
+					size="large"
+					type="button"
 					value="Submit"
 				>
 					Submit
@@ -85,11 +84,17 @@ class LoginForm extends Component {
 				<div className="googlebutton">
 					<h1>OR</h1>
 					<h1>Login With Google</h1>
-					<br></br>
-					<GoogleLogin clientId="985262096986-ebd9c6615ps9map91sc7gmjhrenuf1t1.apps.googleusercontent.com" buttonText="Sign in" onSuccess={onSuccess} onFailure={onFailure}/>
+					<br />
+					<GoogleLogin
+						clientId="985262096986-ebd9c6615ps9map91sc7gmjhrenuf1t1.apps.googleusercontent.com"
+						buttonText="Sign in"
+						onSuccess={onSuccess}
+						onFailure={onFailure}
+					/>
 				</div>
-    </Form>);
-  }
-};
+			</Form>
+		);
+	}
+}
 
 export default LoginForm;
